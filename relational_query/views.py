@@ -7,3 +7,9 @@ def products(request):
     #products
     products = Product.objects.all().values()
     return JsonResponse({'products': list(products)})
+
+def product_filter(request):
+    products = Product.objects.select_related('category').values(
+        'id', 'name', 'price', 'category__id', 'category__name')
+
+    return JsonResponse({'products': list(products)})
