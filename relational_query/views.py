@@ -1,4 +1,9 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 
-def relational_query(request):
-    return HttpResponse("relational_query")
+from relational_query.models import Product
+
+
+def products(request):
+    #products
+    products = Product.objects.all().values()
+    return JsonResponse({'products': list(products)})
