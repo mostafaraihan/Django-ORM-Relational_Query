@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from relational_query.models import Product, Category
+from relational_query.models import Product, Category, InvoiceProduct
 
 
 def products(request):
@@ -25,3 +25,9 @@ def outer_join(request):
 def select_data(request):
     categories = Category.objects.filter(username_id=11).values()
     return JsonResponse({'categories': list(categories)})
+
+def forenkey_lookup(request):
+    invoiceProducts = InvoiceProduct.objects.filter(customer_id=12).values(
+        'qty', 'sale_price',
+    )
+    return JsonResponse({'Invoice Products': list(invoiceProducts)})
