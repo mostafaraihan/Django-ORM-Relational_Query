@@ -15,10 +15,13 @@ def inner_join(request):
 
     return JsonResponse({'products': list(products)})
 
-
 def outer_join(request):
     #Category > Product (outer join)
     categories = Category.objects.prefetch_related('products').values(
         'id', 'name','products__id', 'products__name', 'products__price')
 
     return JsonResponse({'Categorys': list(categories)})
+
+def select_data(request):
+    categories = Category.objects.filter(username_id=11).values()
+    return JsonResponse({'categories': list(categories)})
