@@ -8,7 +8,8 @@ def products(request):
     products = Product.objects.all().values()
     return JsonResponse({'products': list(products)})
 
-def product_filter(request):
+def inner_join(request):
+    #Product > Catagory (inner join)
     products = Product.objects.select_related('category').values(
         'id', 'name', 'price', 'category__id', 'category__name')
 
