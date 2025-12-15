@@ -1,7 +1,12 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from relational_query.models import Product, Category, InvoiceProduct
 import json
+
+
+def index(request):
+    return HttpResponse("Welcome to relational query")
+
 
 def products(request):
     #products

@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.index),
     path('products/', views.products),
     path('serialdata', views.serialdata),
     path('inner_join/', views.inner_join),
