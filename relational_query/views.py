@@ -13,7 +13,6 @@ def serialdata(request):
     result = serialize('json', products)
     return JsonResponse({'products': json.loads(result)})
 
-
 def inner_join(request):
     #Product > Category (inner join)
     products = Product.objects.select_related('category').values(
@@ -36,6 +35,3 @@ def forenkey_lookup(request):
     )
     return JsonResponse({'Invoice Products': list(invoiceProducts)})
 
-
-
-git config --global credential.helper store
