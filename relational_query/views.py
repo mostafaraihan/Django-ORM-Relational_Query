@@ -1,12 +1,18 @@
 from django.http import JsonResponse
-
+from django.core.serializers import serialize
 from relational_query.models import Product, Category, InvoiceProduct
-
+import json
 
 def products(request):
     #products
     products = Product.objects.all().values()
     return JsonResponse({'products': list(products)})
+
+def serialdata(request):
+    products = Product.objects.all()
+    result = serialize('json', products)
+    return JsonResponse({'products': json.loads(result)})
+
 
 def inner_join(request):
     #Product > Category (inner join)
