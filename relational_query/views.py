@@ -36,3 +36,6 @@ def forenkey_lookup(request):
     )
     return JsonResponse({'Invoice Products': list(invoiceProducts)})
 
+
+
+git config --global credential.helper store
