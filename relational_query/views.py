@@ -1,7 +1,9 @@
-from django.http import JsonResponse, HttpResponse
-from django.core.serializers import serialize
-from relational_query.models import Product, Category, InvoiceProduct
 import json
+
+from django.core.serializers import serialize
+from django.http import JsonResponse, HttpResponse
+
+from relational_query.models import Product, Category, InvoiceProduct, Customer
 
 
 def index(request):
@@ -39,4 +41,19 @@ def forenkey_lookup(request):
         'qty', 'sale_price',
     )
     return JsonResponse({'Invoice Products': list(invoiceProducts)})
+
+
+def row_sql(request):
+    query = "SELECT * FROM relational_query_customer WHERE name = %s"
+    customers = Customer.objects.raw(query, ['Customer1'])
+
+    result = [
+        {
+            'name': customer.name,
+            'email': customer.email
+        }
+        for customer in customers
+    ]
+
+    return JsonResponse({'customers': result})
 

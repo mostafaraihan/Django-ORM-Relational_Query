@@ -7,6 +7,7 @@ urlpatterns = [
     path('serialdata', views.serialdata),
     path('inner_join/', views.inner_join),
     path("outer_join/", views.outer_join),
-    path("select_data/", views.select_data,),
-    path("forenkey_lookup/", views.forenkey_lookup,),
+    path("select_data/", views.select_data),
+    path("forenkey_lookup/", views.forenkey_lookup),
+    path('row_sql/', views.row_sql),
 ]
