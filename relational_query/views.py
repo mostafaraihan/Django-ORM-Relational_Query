@@ -50,10 +50,10 @@ def row_sql(request):
     result = [
         {
             'name': customer.name,
-            'email': customer.email
+            'email': customer.email,
         }
         for customer in customers
     ]
 
-    return JsonResponse({'customers': result})
 
+    return JsonResponse({'customers': result})
